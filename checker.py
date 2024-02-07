@@ -1,4 +1,6 @@
-import random
+#!/usr/bin/python3
+
+from random import randint
 from mod_exp import mod_exp
 
 #filter out composite numbers using fermat test
@@ -10,7 +12,7 @@ def fermat_test(n: int):
     if n < 2 or (n & 1) == 0:
         return False
     
-    a = random.randint(2, n - 2)
+    a = randint(2, n - 2)
     if mod_exp(a, n-1, n) != 1:
         return False
     return True
@@ -19,12 +21,12 @@ def fermat_test(n: int):
 def miller_rabin_deterministic(n: int):
     if n == 2 or n == 3:
         return True
-    if n <= 1 or (n & 2) == 0:
+    if n <= 1 or (n & 1) == 0:
         return False
 
     # Write n - 1 as 2^r * d
     r, d = 0, n - 1
-    while (d & 2) == 0:
+    while (d & 1) == 0:
         r += 1
         d //= 2
 
@@ -43,12 +45,12 @@ def miller_rabin_deterministic(n: int):
             return False  # Composite
     return True  # Probably prime
 
-def check_deterministic_main(n: int):
+def check_deterministic(n: int):
     #basic check to see if composite
     if not fermat_test(n): return False
     #tighter check to see if Carmicheal number (composite that passes fermat's theorem)
     elif not miller_rabin_deterministic(n):
-        print(f "Carmicheal number {n}")
+        print(f"Carmicheal number {n}")
         return False
     else: return True
     

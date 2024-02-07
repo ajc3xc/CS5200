@@ -1,6 +1,12 @@
+#!/usr/bin/python3
+
+#does modulo operations
+def mod(a: int, b: int):
+    return a - b * (a // b)
+
 #does modular exponentiation
 #& used instead of % since % isn't allowed for this assignment
-def mod_exp(a: int, b: int, n: int):
+def mod_exp(a: int, b: int, m: int):
     result = 1
     a = mod(a, m)  # Update a if it is more than or equal to m
     

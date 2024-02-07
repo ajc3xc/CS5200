@@ -1,14 +1,7 @@
 #!/usr/bin/python3
 
-import os, sys
-from math import isqrt
-import multiprocessing as mp
-from random import randint
+from random import randint 
 from mod_exp import mod_exp
-from checker import check_deterministic
-
-#I think that using a power to generate the numbers in the first place is excusable
-numbers = tuple(randint(1, 2**32 - 1) for i in range(10000))
 
 #implementation of rabin miller primality test
 def miller_rabin_prob(num):
@@ -44,8 +37,3 @@ def miller_rabin_prob(num):
         if x == num - 1:
             return True
     return False
-
-    
-
-results = tuple(miller_rabin_prob(number) for number in numbers)
-checked_results = tuple(check_deterministic(number) for number in numbers)
